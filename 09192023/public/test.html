@@ -1,0 +1,34 @@
+<button onclick="testLogIn1()">Log In 1</button>
+<button onclick="testLogIn2()">Log In 2</button>
+
+
+<script>
+    async function testLogIn1() {
+      var detail = { }
+      detail.email = "jeff@bezos.com"
+      detail.password = "xxxxx"
+      var payload = { }
+      payload.method = "POST"
+      payload.header = { }
+      payload.header["Content-Type"] = "application/json"
+      payload.body = JSON.stringify(detail)
+      var response = await fetch("/api/login", payload)
+      var result = await response.json()
+      alert(result.status)
+    }
+    async function testLogIn2() {
+      var detail = { }
+      detail.email = "jeff@bezos.com"
+      detail.password = "Jeff123"
+      var payload = { }
+      payload.method = "POST"
+      payload.header = { }
+      payload.header["Content-Type"] = "application/json"
+      payload.body = JSON.stringify(detail)
+      var response = await fetch("/api/login", payload)
+      var result = await response.json()
+      alert(result.status)
+    }
+  
+  </script>
+  

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>iCoffee</title>
+  </head>
+  <body>
+    <button onclick="testLogIn1()">Log In 1</button>
+    <button onclick="testLogIn2()">Log In 2</button>
+    <button onclick="checkMe()">Check Me</button>
+    <script>
+      async function checkMe() {
+        var response = await fetch("/api/me")
+        var result = await response.json()
+        console.log(result)
+        if (result.status == "OK") {
+          alert("Hello " + result.name)
+        } else {
+          alert(result.status)
+        }
+      }
+      async function testLogIn1() {
+        var detail = { }
+        detail.email = "jeff@amazon.com"
+        detail.password = "xxxxx"
+        var payload = { }
+        payload.method = "POST"
+        payload.headers = { }
+        payload.headers["Content-Type"] = "application/json"
+        payload.body = JSON.stringify(detail)
+        var response = await fetch("/api/login", payload)
+        var result = await response.json()
+        alert(result.status)
+      }
+      async function testLogIn2() {
+        var detail = { }
+        detail.email = "jeff@amazon.com"
+        detail.password = "Jeff123"
+        var payload = { }
+        payload.method = "POST"
+        payload.headers = { }
+        payload.headers["Content-Type"] = "application/json"
+        payload.body = JSON.stringify(detail)
+        var response = await fetch("/api/login", payload)
+        var result = await response.text()
+        alert(result)
+      }
+    </script>
+  </body>
+</html>

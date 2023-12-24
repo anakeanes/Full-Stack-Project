@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="start">...</div>
+    <script type="text/babel">
+
+      class First extends React.Component {
+        render() {
+          var location = "Bangkok"
+          return <div>
+                   <h3>Welcome to {location}</h3>
+                   <button>Love</button>
+                   <button>Hate</button>
+                 </div>
+        }
+      }
+      class Counter extends React.Component {
+        current = 0
+        render() {
+          return <section>
+                   <button onClick={ (e) => this.next(e) }>Next</button>
+                   <h3>{this.current}</h3>
+                 </section>
+        }
+        next(event) {
+          this.current++
+          this.forceUpdate()
+        }
+      }
+    
+
+        var element2 = document.getElementById("start")
+        var root = ReactDOM.createRoot(element2)
+        root.render(<Counter />)                                             //here comes the React
+    </script>
+</body>
+
+</html>

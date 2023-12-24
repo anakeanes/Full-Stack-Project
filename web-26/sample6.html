@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sample</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="start">...</div>
+    <script type="text/babel">
+
+      class First extends React.Component {
+        render() {
+          var location = "Bangkok"
+          return <div>
+                   <h3>Welcome to {location}</h3>
+                   <button>Love</button>
+                   <button>Hate</button>
+                 </div>
+        }
+      }
+      class Counter extends React.Component {
+        current = 0
+        render() {
+          return <section>
+                   <button onClick={ (e) => this.next(e) }>Next</button>
+                   <h3>{this.current}</h3>
+                 </section>
+        }
+        next(event) {
+          this.current++
+          this.forceUpdate()
+        }
+      }
+      class Toggle extends React.Component {
+        current = "Yes"
+        render() {
+          return <button onClick={ e => this.change(e) }
+                    >{this.current}</button>
+        }
+        change(event) {
+          this.current = this.current == "Yes" ? "No" : "Yes"
+          this.forceUpdate()
+        }
+      }
+      class Realtime extends React.Component {
+        price = "..."
+        render() {
+          return <div>
+                   <button onClick={ e => this.refresh(e) }>Refresh</button>
+                   <pre>{this.price}</pre>
+                 </div>
+        }
+        async refresh(event) {
+          event.target.innerText = "Waiting ..." //change the button from refresh to waiting
+          // this.props.symbol
+          var url = "https://api.coinbase.com/v2/prices/" +
+                     this.props.symbol + "/spot"
+          var response = await fetch(url)
+          this.price = await response.text()
+          this.forceUpdate()
+        }
+      }
+      var element = document.getElementById("start")
+      var root    = ReactDOM.createRoot(element)
+      root.render( <Realtime symbol="ETH-USD" /> )
+    </script>
+  </body>
+</html>

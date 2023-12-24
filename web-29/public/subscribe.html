@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body></body>
+<input id = "email" placeholder=" Your Email'" />
+<button onclick="pay(0.004)">Gold</button>
+<button onclick="pay(0.002)">Silver</button>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/web3/4.1.2/web3.min.js"></script>
+<script>
+    var seller = "0x463eee5756231F693D98d7Bf4D9AF6584FECCC9D"
+    async function pay (value) {
+        if (window.ethereum == null) {
+            alert("Ethereum provider was not found.") // if provider is not found, tell the user to download
+        }
+        // 1 let the user choose which account to pay/ the payment will come from
+        var command = {}
+        command.method = "eth_requestAccounts"  //the command will ask user for the account
+        var accounts = await window.ethereum.request(command)
+
+        // 2 check for the network, is it what we want
+
+
+        // 3 prepare the transaction details
+
+        var w = new Web3(window.ethereum)
+        var details = { }
+        details.from = account [0] //API must be "the first Array"
+        details.to = seller // the reciever input the address in fix type
+        detail.value = w.util.toWei( "" + value, "ether") //convert to Wei from Ether
+
+        // 4 send the transaction to metamask
+
+        var result = await w.eth.sendTransaction(details)
+
+        // 5 await for the response for 30 sec
+
+        alert(result.status)
+        if (result.status == true) {
+            var input = document.getElementById("email")
+            var rs = await fetch("/save-email?email = " + input.value)
+            // /successsuccess?email==xx@gmail.com&transaction=result=xxx
+        }
+        else {
+            alert("Please try again")
+        }
+
+    }
+//if we want the automatic prove system (normally we re check the transaction by go to etherscan.com)
+//we have to change the API from metamask to something else
+//test with the address in the lecture
+</script>
+</html>
+

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Sample3
+    </title>
+    <meta charset="UTF-8" />
+    <title>Sample3</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="start1">...</div>
+    <script type="text/babel">
+
+        class First extends React.Component {
+            render() {                                                      //in render is a normal function
+                var location = "Bangkok"
+                return
+                <div>
+                    <h3>Welcome to {location}</h3>
+                    <button>Love</button>
+                    <button>Hate</button>
+                </div>
+            }
+        }
+        class Counter extends React.Component{
+            current = 0
+            render () { //e stand for "event", if we do not return, we wont know where/when the event is occured
+                return 
+                <section>
+                    < button onClick = { (e) => this.next(e)}> Next </button>    
+                    <h3>{this.current}</h3>
+                </section>
+            }
+            next () {
+                this.current ++
+                this.forceUpdate ()
+            }
+        }
+        class Toggle extends React.Component {
+            current = "Yes"
+            render () {
+                return 
+                <button onClick={ e => this.change(e)}> {this.current}</button>
+            }
+            change(event) {
+                // we can use if-else statement, but for now we use ternary operator
+                this.current = this.current == "Yes" ? "No" : "Yes"
+                this.forceUpdate
+            }
+        }
+
+        var element2 = document.getElementById("start2")
+        var root = ReactDOM.createRoot(element2)
+        root.render(<Toggle />)                                             //here comes the React
+    </script>
+</body>
+
+</html>

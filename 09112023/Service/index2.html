@@ -1,0 +1,41 @@
+
+/* make it Synchonous function */
+<html>
+    <head>
+
+    </head>
+    <body>
+        <button onclick = "go()" > Refresh</button>>
+
+        <script>
+            var source  = "https://api.coinbase.com/v2/prices/BTC-USD/spot"
+            async function go () {
+
+            
+            var response = await fetch(source)           //await for the response, then can proceed to the next command/function
+                                                         // which funtion has the "await", we must indicate it to the web browser as well
+                                                         // keyword is "async"
+
+            var data = await response.text()
+            alert(data)
+             }   // which function that contained "async" in front of the function declaration, then it will contained "await"
+
+// when fetch has recieved the information/ data, it will call the function "convert" and send the response as well
+
+            function convert(response){
+                        return response.text() // or response.json()
+    }
+
+    //when convert transformed the data, then it will return the output to the funtion name "display"
+            function display(data){
+            alert(data)
+    }
+
+        </script>
+    </body>
+
+
+
+
+
+</html>

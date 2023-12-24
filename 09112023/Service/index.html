@@ -1,0 +1,38 @@
+<! DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <button onclick = "go()" > Refresh</button>>
+
+        <script>
+            var source  = "https://api.coinbase.com/v2/prices/BTC-USD/spot"
+            function go () {
+
+            
+            fetch(source).then(convert).then(display)   //fetch command working as a asynchonous function
+                                                        //which mean it doesn't wait for the response, 
+                                                        // it will run the after command automatically
+                                                        //Synchonous is step by step method
+             }
+
+// when fetch has recieved the information/ data, it will call the function "convert" and send the response as well
+
+            function convert(response){
+                        return response.text() // or response.json()
+    }
+
+    //when convert transformed the data, then it will return the output to the funtion name "display"
+            function display(data){
+            alear(data)
+    }
+
+        </script>
+    </body>
+
+
+
+
+
+</html>

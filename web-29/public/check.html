@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body></body>
+<button onclick="check()">Check</button>
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/web3/4.1.2/web3.min.js"></script>
+<input id = "target" placeholder="Your Address" />
+<script>
+    //var address = "0x5c81ceb756f942813c2b6E590BC0ED341a0F1A50"
+    async function check () {
+        if (window.ethereum == null) {
+            alert("Ethereum provider was not found.") // if provider is not found, tell the user to download
+        }
+        //else {
+           // alert("You are ready to invest.")
+        //}
+        //address = promt ("Enter your Address") //create prompt to get input
+        var input = document.getElementById("target")
+        var w = new Web3(window.ethereum)
+        var b = await w.eth.getBalance(input.value) //if we change the method for input, we have to change the input here
+        //from static input variable "address" to the dynamic input "input.value", variable "input" from id "target"
+        //just like hashmap, we have to map the data (input or output ) by ID, this is truely important
+        var e = w.utils.fromWei(b, "ether")
+        alert(e)
+    }
+
+//test with the address in the lecture
+</script>
+</html>
+

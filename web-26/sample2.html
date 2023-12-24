@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Sample2
+    </title>
+    <meta charset="UTF-8" />
+    <title>Sample2</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="start1">...</div>
+    <script type="text/babel">
+
+        class First extends React.Component {
+            render() {                                                      //in render is a normal function
+                var location = "Bangkok"
+                return
+                <div>
+                    <h3>Welcome to {location}</h3>
+                    <button>Love</button>
+                    <button>Hate</button>
+                </div>
+            }
+        }
+
+        var element1 = document.getElementById("start1")
+        var root = ReactDOM.createRoot(element1)
+        root.render(<First />)                                             //here comes the React
+    </script>
+</body>
+
+</html>
